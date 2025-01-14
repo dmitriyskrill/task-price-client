@@ -2,7 +2,9 @@
 </script>
 
 <template>
-  VITE
+  <component
+      :is="$route.meta.layout || 'div'"
+  ></component>
 </template>
 
 <style scoped>
