@@ -1,5 +1,32 @@
-# Vue 3 + TypeScript + Vite
+Как заполнять markdown https://www.markdownguide.org/cheat-sheet/
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## Технологии:
+#### Vue 3
+#### TypeScript
+#### Vite
+#### Pinia
+#### Vue Router (https://router.vuejs.org/)
+#### i18next (https://www.i18next.com/) (https://i18next.github.io/i18next-vue/)
+это интернационализационный фреймворк, написанный на JavaScript и для него
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+### Тестирование
+
+#### StoryBook (https://storybook.js.org/)
+Storybook — это frontend workshop для создания компонентов и страниц пользовательского 
+интерфейса в изоляции.
+#### Loki (https://loki.js.org/)
+Loki позволяет легко проверить ваш проект Storybook на наличие визуальных регрессий. 
+#### Cypress (https://www.cypress.io/)
+С помощью Cypress можно легко создавать тесты для современных веб-приложений, визуально
+отлаживать их и автоматически запускать в сборках непрерывной интеграции.
+#### Vitest (https://vitest.dev/)
+Vitest — это фреймворк модульного тестирования, разработанный специально для этой цели,
+созданный и поддерживаемый членами команды Vue / Vite. Он интегрируется с проектами на 
+основе Vite с минимальными усилиями и работает невероятно быстро.
+Прочитать статью перед началом тестирования (https://vuejs.org/guide/scaling-up/testing#component-testing)
+)
+
+### Сборка и прекомит хуки
+
+#### Husky (https://typicode.github.io/husky/)
+Позволяет настраивать pre-commit хуки
