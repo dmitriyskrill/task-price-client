@@ -24,6 +24,7 @@
     "@types/jest": "^29.5.14",
     "@types/node": "^18.19.71",
     "@types/vue": "^2.0.0",
+    "@types/vue-router": "^2.0.0",
     "@vitejs/plugin-vue": "^5.2.1",
     "@vue/tsconfig": "^0.7.0",
     "identity-obj-proxy": "^3.0.0",

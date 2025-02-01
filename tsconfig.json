@@ -19,7 +19,11 @@
       "@/*": [
         "./src/*"
       ]
-    }
+    },
+    "types": [
+      "vite/client",
+      "vue-router"
+    ]
   },
   "include": [
     "src/**/*.ts",
