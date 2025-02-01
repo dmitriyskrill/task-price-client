@@ -1,6 +1,7 @@
 Как заполнять markdown https://www.markdownguide.org/cheat-sheet/
 
 ## Технологии:
+
 #### Vue 3
 #### TypeScript
 #### Vite
