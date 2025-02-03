@@ -2,7 +2,7 @@
 
 import { ref } from 'vue'
 import * as yandexTrackerApi from '../api'
-import YandexTrackerTable from '../components/YandexTrackerTable/YandexTrackerTable.vue'
+import YandexTrackerTable from '../components/issue/list/YandexTrackerTable.vue'
 
 export default {
   components: {

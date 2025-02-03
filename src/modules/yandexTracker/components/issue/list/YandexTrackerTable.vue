@@ -13,8 +13,9 @@ export default {
 
       { key: 'hours', title: 'Часы' },
       { key: 'summary', title: 'Наименование' },
-      { key: 'originalEstimation', title: 'План' },
-      { key: 'spent', title: 'Факт' },
+      { key: 'originalEstimationHours', title: 'Первый план' },
+      { key: 'estimationHours', title: 'План' },
+      { key: 'spentHours', title: 'Факт' },
       { key: 'workLogs', title: 'Отработанное время' },
     ],
   }),
@@ -44,7 +45,23 @@ export default {
         :headers="headers"
         :items="issueList"
         :search="search"
-    ></v-data-table>
+    >
+      <template v-slot:item.workLogs="{ item }">
+        <v-row
+            no-gutters
+            v-for="workLog in item.workLogs"
+            :key="workLog.id"
+        >
+          <v-col no-gutters>{{ workLog.durationHours}}ч</v-col>
+          <v-col
+              no-gutters
+          >
+            {{workLog.comment}}
+          </v-col>
+
+        </v-row>
+      </template>
+    </v-data-table>
   </v-card>
 </template>
 
