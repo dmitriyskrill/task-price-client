@@ -1,5 +1,7 @@
 Как заполнять markdown https://www.markdownguide.org/cheat-sheet/
 
+# Несколько приложений Vue 3 в одном SPA: 
+
 ## Технологии:
 
 #### Vue 3
