@@ -8,12 +8,17 @@ import {
 } from './mySelf/getMySelf'
 
 import {
-  getIssueWorklogByIssueId
-} from './issueWorklog/getIssueWorklogByIssueId/getIssueWorklogByIssueId'
+  getWorklogByIssueId,
+} from './worklog/getByIssueId/getWorklogByIssueId'
+import {
+  getWorklogList,
+} from './worklog/getList/getWorklogList'
+
 
 export {
   getMySelf,
   getIssueById,
   getIssueList,
-  getIssueWorklogByIssueId
+  getWorklogByIssueId,
+  getWorklogList
 }

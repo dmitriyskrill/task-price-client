@@ -2,7 +2,7 @@ import { yandexTrackerBaseUrl } from '../../constants.js'
 import axios from 'axios'
 import dayjs from 'dayjs'
 
-async function getIssueWorklogByIssueId (issueId: any) {
+async function getWorklogByIssueId (issueId: any) {
   if (!issueId) return
   const response = await axios.get(`${yandexTrackerBaseUrl}/issues/worklog/byIssueId/${issueId}`, {})
   //@ts-ignore
@@ -18,4 +18,4 @@ async function getIssueWorklogByIssueId (issueId: any) {
 
 }
 
-export { getIssueWorklogByIssueId }
+export { getWorklogByIssueId }

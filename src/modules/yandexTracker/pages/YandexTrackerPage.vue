@@ -19,7 +19,7 @@ export default {
       await yandexTrackerApi.getMySelf()
     },
     async getIssueWorklogByIssueId () {
-      await yandexTrackerApi.getIssueWorklogByIssueId(this.issueId)
+      await yandexTrackerApi.getWorklogByIssueId(this.issueId)
     },
     async getIssueList () {
       this.issueList = await yandexTrackerApi.getIssueList()
