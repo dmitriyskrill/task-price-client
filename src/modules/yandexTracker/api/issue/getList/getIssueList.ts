@@ -1,4 +1,4 @@
-import { yandexTrackerBaseUrl } from '../../constants.js'
+import { yandexTrackerBaseUrl } from '../../constants'
 import axios from 'axios'
 
 const taskNumbers = [159, 164, 155, 167, 166, 165]
