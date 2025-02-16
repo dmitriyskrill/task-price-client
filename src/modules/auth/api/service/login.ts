@@ -1,5 +1,6 @@
-import { baseApiUrl } from '@/shared/api/constants'
-import axios from 'axios'
+import { axiosForAuth } from '../axiosForAuth'
+import { isAxiosError } from 'axios'
+import { saveTokenStorage } from '@/modules/auth/api/helpers/saveTokenStorage'
 
 interface LoginProps {
   recaptchaToken: string
@@ -9,8 +10,8 @@ interface LoginProps {
 
 async function login (props: LoginProps) {
   try {
-    const response = await axios.post(
-      `${baseApiUrl}/auth/login`,
+    const response = await axiosForAuth.post(
+      `/login`,
       {
         email: props.email,
         password: props.password
@@ -19,15 +20,16 @@ async function login (props: LoginProps) {
         headers: {
           'Content-Type': 'application/json',
           recaptcha: props.recaptchaToken
-        }
+        },
+        withCredentials: true
       }
     )
-// if (!response.ok) throw new Error(data.message || 'Ошибка авторизации')
+    if (response.data.accessToken) saveTokenStorage(response.data.accessToken)
     return  response.data
 
 
   } catch (err) {
-    if (axios.isAxiosError(err)) {
+    if (isAxiosError(err)) {
       throw new Error(err.response?.data?.message || 'Ошибка запроса');
     } else if (err instanceof Error) {
       throw new Error(err.message);

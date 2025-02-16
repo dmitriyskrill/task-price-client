@@ -1,4 +1,4 @@
-import { login } from './login/login'
-import { register } from './register/register'
-
-export { login, register }
+export { login } from './service/login'
+export { register } from './service/register'
+export { getNewTokens } from './service/getNewTokens'
+export { axiosWithAuth } from './axiosWithAuth'

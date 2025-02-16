@@ -33,6 +33,8 @@
         </v-btn>
       </v-form>
 
+      <v-btn @click="getNewTokens">getNewTokens</v-btn>
+
       <v-alert v-if="error" type="error" class="mt-4">{{ error }}</v-alert>
     </v-card>
   </v-container>
@@ -43,6 +45,7 @@ import { ref } from 'vue'
 import VueRecaptcha from 'vue3-recaptcha2'
 import { RECAPTCHA_SITE_KEY } from '@/shared/constants'
 import * as authApi from '../api'
+import { useRouter, useRoute } from 'vue-router'
 
 export default {
   computed: {
@@ -50,8 +53,15 @@ export default {
       return RECAPTCHA_SITE_KEY
     }
   },
+  methods: {
+    async getNewTokens(){
+      await authApi.getNewTokens()
+    },
+  },
   components: { VueRecaptcha },
   setup () {
+    const router = useRouter()
+
     const email = ref()
     const password = ref()
     const recaptchaToken = ref('')
@@ -86,7 +96,7 @@ export default {
           password: password.value,
           recaptchaToken: recaptchaToken.value,
         })
-        alert('✅ Успешный вход')
+        await router.push('/')
       } catch (err){
         error.value = err.message
       } finally {

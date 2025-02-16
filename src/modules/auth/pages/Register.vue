@@ -52,6 +52,7 @@ import { ref } from 'vue';
 import VueRecaptcha from 'vue3-recaptcha2'
 import { RECAPTCHA_SITE_KEY } from '@/shared/constants'
 import * as authApi from '@/modules/auth/api'
+import { useRouter } from 'vue-router'
 
 export default {
   computed: {
@@ -61,6 +62,8 @@ export default {
   },
   components: { VueRecaptcha },
   setup() {
+    const router = useRouter()
+
     const email = ref('');
     const password = ref('');
     const confirmPassword = ref('');
@@ -83,7 +86,6 @@ export default {
 
     const onExpired = () => {
       recaptchaToken.value = '';
-      console.warn('reCAPTCHA истекла, обновите');
     };
 
     const register = async () => {
@@ -101,10 +103,10 @@ export default {
           recaptchaToken: recaptchaToken.value,
         })
 
-        success.value = '✅ Регистрация успешна!';
         email.value = '';
         password.value = '';
         confirmPassword.value = '';
+        await router.push('/')
       } catch (err) {
         error.value = err.message;
       } finally {
