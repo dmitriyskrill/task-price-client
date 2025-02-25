@@ -12,7 +12,7 @@ export default {
       { key: 'issueInfo', title: 'Задача' },
       { key: 'start', title: 'Старт' },
       { key: 'createdAt', title: 'Дата создания' },
-      { key: 'createdById', title: 'Кем создано' },
+      { key: 'createdByInfo', title: 'Кем создано' },
 
       { key: 'updatedAt', title: 'Дата изменения' },
       { key: 'updatedById', title: 'Кем изменено' },
@@ -25,7 +25,8 @@ export default {
         ...worklog,
         createdById: worklog.createdBy.id,
         updatedById: worklog.updatedBy.id,
-        issueInfo: this.issueInfo(worklog.issue)
+        issueInfo: this.issueInfo(worklog.issue),
+        createdByInfo: this.displayName(worklog.createdBy)
       }))
     }
   },
