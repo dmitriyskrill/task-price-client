@@ -9,7 +9,7 @@ export default {
       { key: 'index', title: '№' },
       { key: 'durationHours', title: 'Часы' },
       { key: 'comment', title: 'Комментарий' },
-      { key: 'issue', title: 'Задача' },
+      { key: 'issueInfo', title: 'Задача' },
       { key: 'start', title: 'Старт' },
       { key: 'createdAt', title: 'Дата создания' },
       { key: 'createdById', title: 'Кем создано' },
@@ -24,7 +24,8 @@ export default {
       return this.worklogList.map(worklog=> ({
         ...worklog,
         createdById: worklog.createdBy.id,
-        updatedById: worklog.updatedBy.id
+        updatedById: worklog.updatedBy.id,
+        issueInfo: this.issueInfo(worklog.issue)
       }))
     }
   },
