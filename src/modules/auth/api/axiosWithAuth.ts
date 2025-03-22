@@ -3,6 +3,8 @@ import { errorCatch } from '@/shared/api/helper'
 import { baseApiUrl } from '@/shared/api/constants'
 import { removeFromStorage } from '@/modules/auth/api/helpers/removeFromStorage'
 import { getNewTokens } from '@/modules/auth/api/service/getNewTokens'
+import Cookies from 'js-cookie'
+import { EnumTokens } from './constants/enum'
 
 const axiosWithAuth = axios.create({
   baseURL: baseApiUrl,
@@ -12,7 +14,9 @@ const axiosWithAuth = axios.create({
 })
 
 axiosWithAuth.interceptors.request.use(config => {
-  const accessToken = localStorage.getItem('access_token')
+
+  const accessToken = Cookies.get(EnumTokens.ACCESS_TOKEN)
+  console.log(accessToken)
   if (config?.headers && accessToken) config.headers.Authorization = `Bearer ${accessToken}`
   return config
 })
