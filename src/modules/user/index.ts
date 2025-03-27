@@ -1,0 +1,1 @@
+export * as userMock from './mock/userMock'
