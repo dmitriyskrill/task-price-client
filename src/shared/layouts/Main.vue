@@ -8,8 +8,7 @@
   </v-app-bar>
 
   <v-navigation-drawer permanent v-model="drawer">
-    <div></div>
-<!--    <NavBarLinks/>-->
+    <div>dsf</div>
   </v-navigation-drawer>
 
   <v-main>
