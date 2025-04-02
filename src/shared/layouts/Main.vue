@@ -6,11 +6,10 @@
       <v-icon>{{ theme === 'light' ? 'mdi-weather-sunny' : 'mdi-weather-night' }}</v-icon>
     </v-btn>
   </v-app-bar>
-
-  <v-navigation-drawer permanent v-model="drawer">
-    <div>dsf</div>
-  </v-navigation-drawer>
-
+  <NavBar
+      :drawer="drawer"
+      :theme="theme"
+  />
   <v-main>
     <router-view/>
   </v-main>
@@ -18,11 +17,11 @@
 
 <script lang="ts">
 import { ref } from 'vue'
-// import NavBarLinks from '@/components/NavBarLinks.vue'
+import NavBar from '@/shared/components/NavBar.vue'
 
 export default {
   components: {
-    // NavBarLinks,
+    NavBar
   },
   emits: ['toggleTheme'],
   props: ['theme'],
@@ -30,7 +29,7 @@ export default {
     const drawer = ref(true)
 
     return { drawer }
-  },
+  }
 }
 
 
