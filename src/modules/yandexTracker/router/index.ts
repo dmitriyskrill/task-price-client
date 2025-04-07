@@ -10,16 +10,16 @@ const routes = [
     }
   },
   {
-    path: '/yandexTracker/issues',
-    name: 'yandexTracker',
+    path: '/yandexTracker/issue/list',
+    name: 'yandexTrackerIssueList',
     component: () => import('../pages/YandexTrackerPage.vue'),
     meta: {
       layout: Main
     }
   },
   {
-    path: '/yandexTracker/worklog',
-    name: 'yandexTracker',
+    path: '/yandexTracker/worklog/list',
+    name: 'yandexTrackerWorklogList',
     component: () => import('../pages/WorklogListPage.vue'),
     meta: {
       layout: Main
