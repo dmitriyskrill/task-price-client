@@ -6,7 +6,8 @@ const routes = [
     name: 'yandexTracker',
     component: () => import('../pages/YandexTrackerPage.vue'),
     meta: {
-      layout: Main
+      layout: Main,
+      authenticateIsRequired: true
     }
   },
   {
@@ -14,7 +15,8 @@ const routes = [
     name: 'yandexTrackerIssueList',
     component: () => import('../pages/YandexTrackerPage.vue'),
     meta: {
-      layout: Main
+      layout: Main,
+      authenticateIsRequired: true
     }
   },
   {
@@ -22,7 +24,8 @@ const routes = [
     name: 'yandexTrackerWorklogList',
     component: () => import('../pages/WorklogListPage.vue'),
     meta: {
-      layout: Main
+      layout: Main,
+      authenticateIsRequired: true
     }
   },
 ]

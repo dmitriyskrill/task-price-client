@@ -6,6 +6,7 @@ const routes = [
     name: 'userList',
     component: () => import('../pages/UserListPage.vue'),
     meta: {
+      authenticateIsRequired: true,
       layout: Main
     }
   },

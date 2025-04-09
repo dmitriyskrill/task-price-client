@@ -1,7 +1,7 @@
 // Styles
 import '@mdi/font/css/materialdesignicons.css'
 import 'vuetify/styles'
-
+import { ru } from 'vuetify/locale'
 // Vuetify
 import { createVuetify } from 'vuetify'
 
@@ -23,4 +23,22 @@ export default createVuetify({
       }
     }
   },
+  locale: {
+    locale: 'ru',
+    messages: {
+      ru: {
+        ...ru,
+        dataFooter: {
+          itemsPerPageText: 'Элементов на странице:',
+          pageText: '{0}-{1} из {2}',
+          nextPage: 'Следующая страница',
+          prevPage: 'Предыдущая страница',
+          firstPage: 'Первая страница',
+          lastPage: 'Последняя страница',
+          itemsPerPageAll: 'Все', // <--- вот это то, что тебе нужно!
+        },
+      },
+    },
+  },
 })
+

@@ -14,9 +14,7 @@ const axiosWithAuth = axios.create({
 })
 
 axiosWithAuth.interceptors.request.use(config => {
-
   const accessToken = Cookies.get(EnumTokens.ACCESS_TOKEN)
-  console.log(accessToken)
   if (config?.headers && accessToken) config.headers.Authorization = `Bearer ${accessToken}`
   return config
 })

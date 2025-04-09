@@ -46,10 +46,15 @@ export default {
     ]
   }),
   props: ['drawer', 'theme'],
-  emits: ['update:drawer'],
+  emits: ['update:drawer', 'toggleTheme'],
   methods: {
     setActiveLink (link) {
-      this.activeLink = link
+      if (link?.value === this.activeLink?.value) {
+        this.activeLink = null
+      } else {
+        this.activeLink = link
+      }
+
       this.subDrawer = true
     }
   }
@@ -63,39 +68,54 @@ export default {
       :rail="rail"
       :theme="theme"
   >
-    <v-list-item
-        prepend-avatar="https://randomuser.me/api/portraits/men/85.jpg"
-        title="John Leider"
-        nav
-        @click="rail = false"
-    >
-      <template v-slot:append>
-        <v-btn
-            icon="mdi-chevron-left"
-            variant="text"
-            @click.stop="rail = !rail"
-        ></v-btn>
-      </template>
-    </v-list-item>
-    <v-divider></v-divider>
-    <v-list
-        density="compact"
-        nav
-    >
+    <div class="d-flex flex-column fill-height">
       <v-list-item
-          v-for="link  in navLinkList"
-          :key="link.value"
-          :prepend-icon="link.icon"
-          :title="link.title"
-          :value="link.value"
-          :active="activeLink?.value === link.value"
-          @click="setActiveLink(link)"
+          prepend-avatar="https://randomuser.me/api/portraits/men/85.jpg"
+          title="John Leider"
+          nav
       />
-    </v-list>
-    <v-list-item
-        :prepend-icon="subDrawer?'mdi-menu-close':'mdi-menu-open'"
-        @click="subDrawer = !subDrawer"
-    />
+      <v-divider></v-divider>
+      <div class="flex-grow-1 overflow-y-auto">
+        <v-list
+            density="compact"
+            nav
+        >
+          <v-list-item
+              v-for="link  in navLinkList"
+              :key="link.value"
+              :prepend-icon="link.icon"
+              :title="link.title"
+              :value="link.value"
+              :active="activeLink?.value === link.value"
+              @click="setActiveLink(link)"
+          />
+        </v-list>
+      </div>
+      <v-divider></v-divider>
+      <v-list-item
+          nav
+          @click="rail = false"
+      >
+        <template v-slot:prepend>
+          <v-btn
+              :icon="`mdi-chevron-${rail?'right':'left'}`"
+              variant="text"
+              @click.stop="rail = !rail"
+          ></v-btn>
+        </template>
+        <template v-slot:append>
+          <v-btn
+              icon="mdi-close"
+              variant="text"
+              @click.stop="$emit('update:drawer', false)"
+          ></v-btn>
+        </template>
+        <v-btn icon @click="$emit('toggleTheme')" variant="text">
+          <v-icon>{{ theme === 'light' ? 'mdi-weather-sunny' : 'mdi-weather-night' }}</v-icon>
+        </v-btn>
+      </v-list-item>
+
+    </div>
   </v-navigation-drawer>
 
   <v-navigation-drawer

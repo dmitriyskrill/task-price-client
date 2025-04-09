@@ -6,6 +6,7 @@ const routes = [
     name: 'tableColumnGroup',
     component: () => import('../pages/TableColumnGroupPage.vue'),
     meta: {
+      authenticateIsRequired: true,
       layout: Main
     }
   },
@@ -14,6 +15,7 @@ const routes = [
     name: 'tableColumnGroup',
     component: () => import('../pages/TableColumnGroupListPage.vue'),
     meta: {
+      authenticateIsRequired: true,
       layout: Main
     }
   }

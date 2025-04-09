@@ -27,7 +27,6 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  console.log('beforeEach', authService.isAuthenticated(), to.meta)
   if (to.meta.authenticateIsRequired && !authService.isAuthenticated()) {
     next('/auth/login') // Перенаправляем на страницу входа
   } else {
