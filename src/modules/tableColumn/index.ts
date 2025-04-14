@@ -1,1 +1,7 @@
-export type { ITableColumn } from './types/TableColumn.interface'
+
+import tableColumnRoutes from './router'
+
+export {
+    tableColumnRoutes
+}
+
