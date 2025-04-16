@@ -17,6 +17,7 @@ export default {
       { title: 'Ключ', key: 'key' },
       { title: 'Ширина', key: 'width' },
       { title: 'Тип ячейки', key: 'cellType' },
+      { title: 'Сортировка', key: 'sort' },
       { title: 'Показать', key: 'isShow' },
       { title: 'Зафиксировать', key: 'isFixed' },
       { title: 'Доступна для редактирования', key: 'isEditable' },
@@ -25,6 +26,9 @@ export default {
     ],
   }),
   methods: {
+    async postTableColumnFromOldDb () {
+      await tableColumnApi.postTableColumnFromOldDb()
+    },
     openEditDialog (tableColumnId) {
       this.editDialog = {
         isOpen: true,
@@ -64,6 +68,14 @@ export default {
   >
     <h3 class="mx-10">{{ title }}</h3>
     <v-spacer/>
+    <v-btn
+        v-tooltip:bottom="'Создать из старой базы данных'"
+        variant="text"
+        icon
+        @click="postTableColumnFromOldDb"
+    >
+      <v-icon>mdi-database-arrow-down</v-icon>
+    </v-btn>
     <TableColumnCreateDialog
         @tableColumnCreated="setToTableColumnList($event)"
     />
