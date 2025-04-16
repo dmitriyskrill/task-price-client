@@ -21,6 +21,12 @@ export default {
             title: 'Группы колонок',
             value: 'tableColumnGroup',
             to: '/tableColumnGroup/list',
+          },
+          {
+            icon: 'mdi-table-column',
+            title: 'Колонки',
+            value: 'tableColumn',
+            to: '/tableColumn/list',
           }
         ]
       },
@@ -134,6 +140,7 @@ export default {
           :value="childLink.value"
           :prepend-icon="childLink.icon"
           :to="childLink.to"
+          exact
       />
     </v-list>
   </v-navigation-drawer>
