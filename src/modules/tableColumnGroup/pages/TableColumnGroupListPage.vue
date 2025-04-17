@@ -1,41 +1,14 @@
-<script lang="js">
-import * as tableColumnGroupApi from '../api'
+<script>
+
+import TableColumnGroupList from '../components/list/TableColumnGroupList.vue'
 
 export default {
-  components: {},
-  data: () => ({
-    search: '',
-    tableColumnGroupList: [],
-    headers: [{
-      align: 'start',
-      key: 'key',
-      sortable: false,
-      title: 'Ключ',
-    },
-
-      { key: 'tableColumnList', title: 'Колонки' },]
-
-  }),
-  methods: {
-    async getTableColumnGroupList () {
-      this.tableColumnGroupList = await tableColumnGroupApi.getTableColumnGroupList()
-    }
-  },
+  components: { TableColumnGroupList }
 }
-
-
 </script>
 
 <template>
-  <v-data-table
-      :headers="headers"
-      :items="tableColumnGroupList"
-      :search="search"
-      :multi-sort="true"
-      items-per-page="-1"
-  >
-
-  </v-data-table>
+  <TableColumnGroupList/>
 </template>
 
 <style scoped>

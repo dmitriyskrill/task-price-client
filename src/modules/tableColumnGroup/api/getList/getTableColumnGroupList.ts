@@ -1,12 +1,13 @@
 import { axiosWithAuth } from '@/modules/auth'
-import { ITableColumnGroup } from '../../types/TableColumnGroup.interface'
-import { tableColumnGroupList } from '../../mock/tableColumnGroupMock'
+import { tableColumnGroupApiEndpoint } from '../const'
+async function getTableColumnGroupList () {
+  try {
+    const userList = await axiosWithAuth.get(`/${tableColumnGroupApiEndpoint}`)
+    return userList.data
+  } catch (e) {
+    return []
+  }
 
-async function getTableColumnGroupList (): Promise<ITableColumnGroup[]> {
-
-  return tableColumnGroupList
 }
 
-export {
-  getTableColumnGroupList
-}
+export { getTableColumnGroupList }
