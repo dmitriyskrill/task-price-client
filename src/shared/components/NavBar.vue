@@ -27,6 +27,12 @@ export default {
             title: 'Колонки',
             value: 'tableColumn',
             to: '/tableColumn/list',
+          },
+          {
+            icon: 'mdi-table-column',
+            title: 'Вложенные колонки',
+            value: 'tableColumnChild',
+            to: '/tableColumnChild/list',
           }
         ]
       },
