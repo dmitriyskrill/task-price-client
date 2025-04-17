@@ -3,5 +3,5 @@ import type { ITableColumn } from '@/modules/tableColumn'
 
 /* Группировка колонок для отображения */
 export interface ITableColumnGroup extends ITypicalFields {
-  tableColumnList: ITableColumn[]
+  tableColumnList?: ITableColumn[]
 }
