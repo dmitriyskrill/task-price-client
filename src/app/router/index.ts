@@ -5,6 +5,7 @@ import { authRoutes, authService } from '@/modules/auth'
 import { tableColumnGroupRoutes } from '@/modules/tableColumnGroup'
 import { tableColumnRoutes } from '@/modules/tableColumn'
 import { tableColumnChildRoutes } from '@/modules/tableColumnChild'
+import { unitRoutes } from '@/modules/unit'
 
 import { userRoutes } from '@/modules/user'
 
@@ -26,7 +27,8 @@ const router = createRouter({
     ...tableColumnRoutes,
     ...tableColumnChildRoutes,
     ...authRoutes,
-    ...userRoutes
+    ...userRoutes,
+    ...unitRoutes
   ]
 })
 

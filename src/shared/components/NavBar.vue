@@ -33,6 +33,12 @@ export default {
             title: 'Вложенные колонки',
             value: 'tableColumnChild',
             to: '/tableColumnChild/list',
+          },
+          {
+            icon: 'mdi-table-column',
+            title: 'Единицы измерения',
+            value: 'unit',
+            to: '/unit/list',
           }
         ]
       },
