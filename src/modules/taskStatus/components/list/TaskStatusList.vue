@@ -69,11 +69,7 @@ export default {
       :items="taskStatusList"
       fixed-header
       style="height: calc(100vh - 48px)"
-      :footer-props="{
-        itemsPerPageText: 'Элементов на странице:',
-        itemsPerPageAllText: 'Все',
-        itemsPerPage: -1
-      }"
+      :itemsPerPage="-1"
   >
     <template #item.actions="{ item }">
       <v-btn variant="text" icon @click="openEditDialog(item.id)">
