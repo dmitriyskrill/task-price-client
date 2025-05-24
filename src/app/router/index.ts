@@ -5,7 +5,8 @@ import { authRoutes, authService } from '@/modules/auth'
 import { tableColumnGroupRoutes } from '@/modules/tableColumnGroup'
 import { tableColumnRoutes } from '@/modules/tableColumn'
 import { tableColumnChildRoutes } from '@/modules/tableColumnChild'
-
+import { taskStatusRoutes } from '@/modules/taskStatus'
+import { taskWorkflowRoutes } from '@/modules/taskWorkflow'
 import { userRoutes } from '@/modules/user'
 
 const router = createRouter({
@@ -26,7 +27,9 @@ const router = createRouter({
     ...tableColumnRoutes,
     ...tableColumnChildRoutes,
     ...authRoutes,
-    ...userRoutes
+    ...userRoutes,
+    ...taskStatusRoutes,
+    ...taskWorkflowRoutes
   ]
 })
 
