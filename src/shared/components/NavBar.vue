@@ -1,5 +1,11 @@
 <script>
-export default {
+import { defineComponent } from 'vue'
+import { useCurrentUserStore } from '@/modules/auth'
+export default defineComponent ({
+  setup() {
+    const currentUserStore = useCurrentUserStore();
+    return { currentUserStore };
+  },
   data: () => ({
     rail: true,
     subDrawer: true,
@@ -33,6 +39,12 @@ export default {
             title: 'Вложенные колонки',
             value: 'tableColumnChild',
             to: '/tableColumnChild/list',
+          },
+          {
+            icon: 'mdi-list-status',
+            title: 'Статус элемента',
+            value: 'taskStatus',
+            to: '/taskStatus/list',
           }
         ]
       },
@@ -69,8 +81,13 @@ export default {
 
       this.subDrawer = true
     }
+  },
+  computed: {
+    userEmail() {
+      return this.currentUserStore?.user?.email || 'Гость';
+    },
   }
-}
+})
 </script>
 
 <template>
@@ -83,7 +100,7 @@ export default {
     <div class="d-flex flex-column fill-height">
       <v-list-item
           prepend-avatar="https://randomuser.me/api/portraits/men/85.jpg"
-          title="John Leider"
+          :title="userEmail"
           nav
       />
       <v-divider></v-divider>
