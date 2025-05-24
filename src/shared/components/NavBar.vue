@@ -51,6 +51,12 @@ export default defineComponent ({
             title: 'Рабочие процессы задач',
             value: 'taskWorkflow',
             to: '/taskWorkflow/list',
+           },
+           {
+            icon: 'mdi-table-column',
+            title: 'Единицы измерения',
+            value: 'unit',
+            to: '/unit/list',
           }
         ]
       },
