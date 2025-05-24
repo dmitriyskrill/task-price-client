@@ -1,6 +1,7 @@
 import { axiosForAuth } from '../axiosForAuth'
 import { isAxiosError } from 'axios'
 import { saveTokenStorage } from '@/modules/auth/api/helpers/saveTokenStorage'
+import { getCurrentUser } from '@/modules/auth/api'
 
 interface LoginProps {
   recaptchaToken: string
@@ -25,6 +26,7 @@ async function login (props: LoginProps) {
       }
     )
     if (response.data.accessToken) saveTokenStorage(response.data.accessToken)
+    await getCurrentUser()
     return  response.data
 
 
