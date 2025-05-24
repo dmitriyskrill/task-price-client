@@ -42,9 +42,15 @@ export default defineComponent ({
           },
           {
             icon: 'mdi-list-status',
-            title: 'Статус элемента',
+            title: 'Статусы задач',
             value: 'taskStatus',
             to: '/taskStatus/list',
+          },
+          {
+            icon: 'mdi-list-status',
+            title: 'Рабочие процессы задач',
+            value: 'taskWorkflow',
+            to: '/taskWorkflow/list',
           }
         ]
       },
