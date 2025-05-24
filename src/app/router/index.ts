@@ -31,7 +31,7 @@ const router = createRouter({
     ...authRoutes,
     ...userRoutes,
     ...taskStatusRoutes,
-    ...taskWorkflowRoutes
+    ...taskWorkflowRoutes,
     ...unitRoutes
   ]
 })
