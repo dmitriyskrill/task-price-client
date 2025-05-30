@@ -64,12 +64,13 @@ export default {
   }),
   methods: {
     async createTaskWorkflow () {
-      if (!await this.$refs.form.validate() || !this.currentUserStore?.user?.id) {
+      const ownerId = this.currentUserStore?.userId
+      if (!await this.$refs.form.validate() || !ownerId) {
         return false
       }
       const createdTaskWorkflow = await taskWorkflowApi.postTaskWorkflow({
         ...this.taskWorkflow,
-        ownerId: this.currentUserStore?.user?.id
+        ownerId
       })
       if (createdTaskWorkflow.id) {
         this.$emit('taskWorkflowCreated', createdTaskWorkflow)

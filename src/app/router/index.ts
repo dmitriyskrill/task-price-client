@@ -2,14 +2,17 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Main from '../../shared/layouts/Main.vue'
 import { yandexTrackerRoutes } from '@/modules/yandexTracker'
 import { authRoutes, authService } from '@/modules/auth'
+import { userRoutes } from '@/modules/user'
+
+import { unitRoutes } from '@/modules/unit'
+
 import { tableColumnGroupRoutes } from '@/modules/tableColumnGroup'
 import { tableColumnRoutes } from '@/modules/tableColumn'
 import { tableColumnChildRoutes } from '@/modules/tableColumnChild'
 
 import { taskStatusRoutes } from '@/modules/taskStatus'
 import { taskWorkflowRoutes } from '@/modules/taskWorkflow'
-import { unitRoutes } from '@/modules/unit'
-import { userRoutes } from '@/modules/user'
+import { taskWorkflowStatusRoutes } from '@/modules/taskWorkflowStatus'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -32,7 +35,8 @@ const router = createRouter({
     ...userRoutes,
     ...taskStatusRoutes,
     ...taskWorkflowRoutes,
-    ...unitRoutes
+    ...unitRoutes,
+    ...taskWorkflowStatusRoutes
   ]
 })
 
