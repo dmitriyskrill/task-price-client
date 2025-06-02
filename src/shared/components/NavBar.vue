@@ -58,6 +58,12 @@ export default defineComponent ({
             value: 'taskWorkflowStatus',
             to: '/taskWorkflowStatus/list',
           },
+          {
+            icon: 'mdi-list-status',
+            title: 'taskWorkflowStatusPermission',
+            value: 'taskWorkflowStatusPermission',
+            to: '/taskWorkflowStatusPermission/list',
+          },
            {
             icon: 'mdi-table-column',
             title: 'Единицы измерения',

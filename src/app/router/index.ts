@@ -13,6 +13,7 @@ import { tableColumnChildRoutes } from '@/modules/tableColumnChild'
 import { taskStatusRoutes } from '@/modules/taskStatus'
 import { taskWorkflowRoutes } from '@/modules/taskWorkflow'
 import { taskWorkflowStatusRoutes } from '@/modules/taskWorkflowStatus'
+import { taskWorkflowStatusPermissionRoutes } from '@/modules/taskWorkflowStatusPermission'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -28,15 +29,19 @@ const router = createRouter({
     },
     { path: '/:pathMatch(.*)*', redirect: '/' }, //component: NotFound
     ...yandexTrackerRoutes,
+
+    ...authRoutes,
+    ...userRoutes,
+    ...unitRoutes,
+
     ...tableColumnGroupRoutes,
     ...tableColumnRoutes,
     ...tableColumnChildRoutes,
-    ...authRoutes,
-    ...userRoutes,
+
     ...taskStatusRoutes,
     ...taskWorkflowRoutes,
-    ...unitRoutes,
-    ...taskWorkflowStatusRoutes
+    ...taskWorkflowStatusRoutes,
+    ...taskWorkflowStatusPermissionRoutes,
   ]
 })
 

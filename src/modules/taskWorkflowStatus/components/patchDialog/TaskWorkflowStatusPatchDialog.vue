@@ -5,21 +5,27 @@
 
       <v-card-text>
         <v-form ref="form" v-model="valid">
-          <v-text-field
-              v-model="taskWorkflowStatus.name"
-              label="Наименование"
-              :rules="[]"
-              clearable
-              :append-icon="changedFields.name ? 'mdi-pencil' : ''"
-              @input="onFieldChange('name')"
+          <v-select
+              label="Task Workflow"
+              v-model="taskWorkflowStatus.taskWorkflowId"
+              :items="taskWorkflowList"
+              item-title="name"
+              item-value="id"
+              :rules="[required]"
+              :return-object="false"
+              :append-icon="changedFields.taskWorkflowId ? 'mdi-pencil' : ''"
+              @input="onFieldChange('taskWorkflowId')"
           />
-          <v-text-field
-              v-model="taskWorkflowStatus.shortName"
-              label="Краткое наименование"
-              :rules="[]"
-              clearable
-              :append-icon="changedFields.shortName ? 'mdi-pencil' : ''"
-              @input="onFieldChange('shortName')"
+          <v-select
+              label="Task Status"
+              v-model="taskWorkflowStatus.taskStatusId"
+              :items="taskStatusList"
+              item-title="name"
+              item-value="id"
+              :rules="[required]"
+              :return-object="false"
+              :append-icon="changedFields.taskStatusId ? 'mdi-pencil' : ''"
+              @input="onFieldChange('taskStatusId')"
           />
           <v-checkbox
               label="В корзине"
@@ -42,6 +48,8 @@
 
 <script>
 import * as taskWorkflowStatusApi from '../../api'
+import { taskWorkflowService } from '@/modules/taskWorkflow/index.js'
+import { taskStatusService } from '@/modules/taskStatus/index.js'
 
 export default {
   name: 'TaskWorkflowStatusPatchDialog',
@@ -50,9 +58,12 @@ export default {
   data: () => ({
     valid: false,
     taskWorkflowStatus: {
-      shortName: '',
-      name: '',
+      taskStatusId: null,
+      taskWorkflowId: null,
+      isTrash: null
     },
+    taskWorkflowList: [],
+    taskStatusList: [],
     originalTaskWorkflowStatus: {},
     changedFields: {},
     required: v => !!v || 'Обязательное поле',
@@ -104,7 +115,14 @@ export default {
     },
     closeDialog () {
       this.$emit('closeDialog')
-    }
+    },
+    async getRelations () {
+      this.taskWorkflowList = await taskWorkflowService.getTaskWorkflowList()
+      this.taskStatusList = await taskStatusService.getTaskStatusList()
+    },
+  },
+  async beforeMount () {
+    await this.getRelations()
   }
 }
 </script>
