@@ -20,4 +20,10 @@ export const useCurrentUserStore = defineStore('currentUser', {
       this.user = user;
     },
   },
+
+  getters: {
+    userId: (state): string | null => {
+      return state.user?.id ?? null;
+    },
+  },
 });

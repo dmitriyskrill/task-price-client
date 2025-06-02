@@ -67,16 +67,17 @@ export default {
       if (!await this.$refs.form.validate()) {
         return false
       }
-      if (this.currentUserStore?.user?.id) {
-        const createdTaskStatus = await taskStatusApi.postTaskStatus({
-          ...this.taskStatus,
-          ownerId: this.currentUserStore?.user?.id
-        })
+      const ownerId = this.currentUserStore?.user?.id
+      if (!ownerId) return
+      const createdTaskStatus = await taskStatusApi.postTaskStatus({
+        ...this.taskStatus,
+        ownerId
+      })
 
-        if (createdTaskStatus.id) {
-          this.$emit('taskStatusCreated', createdTaskStatus)
-          this.closeDialog()
-        }
+      if (createdTaskStatus.id) {
+        this.$emit('taskStatusCreated', createdTaskStatus)
+        this.closeDialog()
+
       }
 
     },
