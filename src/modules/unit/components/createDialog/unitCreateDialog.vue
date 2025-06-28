@@ -39,6 +39,12 @@
               clearable
           />
           <v-text-field
+              v-model="unit.key"
+              label="Ключ"
+              :rules="[requiredRule]"
+              clearable
+          />
+          <v-text-field
               v-model="unit.codeId"
               label="codeId"
               :rules="[requiredRule]"
@@ -73,8 +79,10 @@ const defaultUnit = {
   shortName: null,
   fullName: null,
   codeId: null,
+  key: null,
   isHourUnit: false,
   isTrash: false,
+
 }
 
 export default {
