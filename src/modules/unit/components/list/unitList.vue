@@ -19,7 +19,9 @@ export default {
       { title: 'fullName', key: 'fullName' },
       { title: 'codeId', key: 'codeId' },
       { title: 'isHourUnit', key: 'isHourUnit' },
+      { title: 'Ключ', key: 'key'},
       { title: 'В корзине', key: 'isTrash' },
+    
       { key: 'actions' }
     ],
   }),
