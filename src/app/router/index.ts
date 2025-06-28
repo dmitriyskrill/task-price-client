@@ -16,6 +16,7 @@ import { taskWorkflowRoutes } from '@/modules/taskWorkflow'
 import { taskWorkflowStatusRoutes } from '@/modules/taskWorkflowStatus'
 import { taskWorkflowStatusPermissionRoutes } from '@/modules/taskWorkflowStatusPermission'
 import { taskDateGraphRoutes } from '@/modules/taskDateGraph'
+import { expenseTypeRoutes } from '@/modules/expenseType'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -46,6 +47,8 @@ const router = createRouter({
     ...taskWorkflowStatusRoutes,
     ...taskWorkflowStatusPermissionRoutes,
     ...taskDateGraphRoutes,
+
+    ...expenseTypeRoutes,
   ]
 })
 

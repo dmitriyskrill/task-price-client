@@ -1,10 +1,11 @@
 <script>
 import { defineComponent } from 'vue'
 import { useCurrentUserStore } from '@/modules/auth'
-export default defineComponent ({
-  setup() {
-    const currentUserStore = useCurrentUserStore();
-    return { currentUserStore };
+
+export default defineComponent({
+  setup () {
+    const currentUserStore = useCurrentUserStore()
+    return { currentUserStore }
   },
   data: () => ({
     rail: true,
@@ -57,7 +58,7 @@ export default defineComponent ({
             title: 'Рабочие процессы задач',
             value: 'taskWorkflow',
             to: '/taskWorkflow/list',
-           },
+          },
           {
             icon: 'mdi-list-status',
             title: 'taskWorkflowStatus',
@@ -70,7 +71,7 @@ export default defineComponent ({
             value: 'taskWorkflowStatusPermission',
             to: '/taskWorkflowStatusPermission/list',
           },
-           {
+          {
             icon: 'mdi-table-column',
             title: 'Единицы измерения',
             value: 'unit',
@@ -81,6 +82,12 @@ export default defineComponent ({
             title: 'TaskDateGraph',
             value: 'taskDateGraph',
             to: '/taskDateGraph/list',
+          },
+          {
+            icon: 'mdi-list-status',
+            title: 'Тип затрат',
+            value: 'expenseType',
+            to: '/expenseType/list',
           },
         ]
       },
@@ -119,8 +126,8 @@ export default defineComponent ({
     }
   },
   computed: {
-    userEmail() {
-      return this.currentUserStore?.user?.email || 'Гость';
+    userEmail () {
+      return this.currentUserStore?.user?.email || 'Гость'
     },
   }
 })
