@@ -69,7 +69,13 @@ export default defineComponent ({
             title: 'Единицы измерения',
             value: 'unit',
             to: '/unit/list',
-          }
+          },
+          {
+            icon: 'mdi-chart-line',
+            title: 'TaskDateGraph',
+            value: 'taskDateGraph',
+            to: '/taskDateGraph/list',
+          },
         ]
       },
       {
