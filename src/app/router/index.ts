@@ -10,6 +10,7 @@ import { tableColumnGroupRoutes } from '@/modules/tableColumnGroup'
 import { tableColumnRoutes } from '@/modules/tableColumn'
 import { tableColumnChildRoutes } from '@/modules/tableColumnChild'
 
+import { taskTypeRoutes} from '@/modules/taskType'
 import { taskStatusRoutes } from '@/modules/taskStatus'
 import { taskWorkflowRoutes } from '@/modules/taskWorkflow'
 import { taskWorkflowStatusRoutes } from '@/modules/taskWorkflowStatus'
@@ -38,6 +39,7 @@ const router = createRouter({
     ...tableColumnRoutes,
     ...tableColumnChildRoutes,
 
+    ...taskTypeRoutes,
     ...taskStatusRoutes,
     ...taskWorkflowRoutes,
     ...taskWorkflowStatusRoutes,

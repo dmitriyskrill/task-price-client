@@ -42,6 +42,12 @@ export default defineComponent ({
           },
           {
             icon: 'mdi-list-status',
+            title: 'Типы задач',
+            value: 'taskType',
+            to: '/taskType/list',
+          },
+          {
+            icon: 'mdi-list-status',
             title: 'Статусы задач',
             value: 'taskStatus',
             to: '/taskStatus/list',
