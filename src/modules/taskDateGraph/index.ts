@@ -1,11 +1,7 @@
-export * from './api'
-export * from './types/TaskDateGraph.interface'
-export * from './routes' 
-
-import {taskDateGraphRoutes } from './routes'
+import { taskDateGraphService } from './service'
+import taskDateGraphRoutes from './router'
 
 export {
-  taskDateGraphRoutes
-}
-
-export type { ITaskDateGraph } from './types/TaskDateGraph.interface'
+  taskDateGraphRoutes,
+  taskDateGraphService
+} 

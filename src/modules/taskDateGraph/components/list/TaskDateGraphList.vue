@@ -1,43 +1,92 @@
-<script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import { getTaskDateGraphList } from '@/modules/taskDateGraph/api'
-import type { ITaskDateGraph } from '@/modules/taskDateGraph/types/TaskDateGraph.interface'
-import TaskDateGraphCreateDialog from '@/modules/taskDateGraph/components/createDialog/TaskDateGraphCreateDialog.vue'
+<script>
+import * as taskDateGraphApi from '../../api'
+import TaskDateGraphPatchDialog from '../patchDialog/TaskDateGraphPatchDialog.vue'
+import TaskDateGraphCreateDialog from '../createDialog/TaskDateGraphCreateDialog.vue'
 
-const taskDateGraphList = ref<ITaskDateGraph[]>([])
-
-onMounted(async () => {
-  taskDateGraphList.value = await getTaskDateGraphList()
-})
-
-function addTaskDateGraph(item: ITaskDateGraph) {
-  taskDateGraphList.value.push(item)
-}
-
-const headers = [
+export default {
+  components: { TaskDateGraphCreateDialog, TaskDateGraphPatchDialog },
+  data: () => ({
+    title: 'Список записей даты из графика задач',
+    editDialog: {
+      isOpen: false,
+      taskDateGraphId: null,
+    },
+    taskDateGraphList: [],
+    headers: [
+      { title: 'Наименование', key: 'name' },
       { title: 'Дата', key: 'date' },
-      { title: 'Сумма', key: 'amount' },
-      { title: 'Задача', key: 'task.name' },
+      { title: 'Кол-во', key: 'amount' },
       { title: 'Факт', key: 'isFact' },
-      { title: 'Владелец', key: 'owner.surname' }
+      { title: 'taskId', key: 'taskId' },
+      { title: 'В корзине', key: 'isTrash' },
+      { key: 'actions' }
+    ],
+  }),
+  methods: {
+    openEditDialog (taskDateGraphId) {
+      this.editDialog = {
+        isOpen: true,
+        taskDateGraphId: taskDateGraphId,
+      }
+    },
+    closeEditDialog () {
+      this.editDialog = {
+        isOpen: false,
+        taskDateGraphId: null,
+      }
+    },
+    setToTaskDateGraphList (taskDateGraph) {
+      const index = this.taskDateGraphList.findIndex(u => u.id === taskDateGraph.id)
+      if (index >= 0) {
+        this.taskDateGraphList.splice(index, 1, taskDateGraph)
+      } else {
+        this.taskDateGraphList.push(taskDateGraph)
+      }
+    }
+  },
+  async mounted () {
+    const taskDateGraphList = await taskDateGraphApi.getTaskDateGraphList()
+    this.taskDateGraphList = [
+      ...taskDateGraphList,
     ]
+  }
+
+}
 </script>
 
 <template>
-    <v-app-bar
+  <v-app-bar
       density="compact"
       no-gutters
       class="px-4"
   >
-    <h3 class="mx-10"> График по датам задач</h3>
+    <h3 class="mx-10">{{ title }}</h3>
     <v-spacer/>
-    <TaskDateGraphCreateDialog @taskDateGraphCreated="addTaskDateGraph" />
+    <TaskDateGraphCreateDialog
+        @taskDateGraphCreated="setToTaskDateGraphList($event)"
+    />
   </v-app-bar>
   <v-data-table
-    :headers="headers"
-    :items="taskDateGraphList"
-    density="compact"
-    fixed-header
-    style="height: 80vh"
+      density="compact"
+      :headers="headers"
+      :items="taskDateGraphList"
+      fixed-header
+      style="height: calc(100vh - 48px)"
+      :itemsPerPage="-1"
+  >
+    <template #item.actions="{ item }">
+      <v-btn variant="text" icon @click="openEditDialog(item.id)">
+        <v-icon>mdi-pencil</v-icon>
+      </v-btn>
+    </template>
+  </v-data-table>
+  <TaskDateGraphPatchDialog
+      :isOpen="editDialog.isOpen"
+      :taskDateGraphId="editDialog.taskDateGraphId"
+      @closeDialog="closeEditDialog"
+      @taskDateGraphPatched="setToTaskDateGraphList($event)"
   />
-</template> 
+</template>
+
+<style scoped>
+</style> 

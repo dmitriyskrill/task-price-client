@@ -17,6 +17,11 @@ import { taskWorkflowStatusRoutes } from '@/modules/taskWorkflowStatus'
 import { taskWorkflowStatusPermissionRoutes } from '@/modules/taskWorkflowStatusPermission'
 import { taskDateGraphRoutes } from '@/modules/taskDateGraph'
 import { expenseTypeRoutes } from '@/modules/expenseType'
+import { taskDayGraphRoutes } from '@/modules/taskDayGraph'
+import { taskRoutes } from '@/modules/task'
+import { expenseRoutes } from '@/modules/expense'
+import { expenseDateGraphRoutes } from '@/modules/expenseDateGraph'
+import { expenseDayGraphRoutes } from '@/modules/expenseDayGraph'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -41,14 +46,19 @@ const router = createRouter({
     ...tableColumnRoutes,
     ...tableColumnChildRoutes,
 
+    ...taskRoutes,
     ...taskTypeRoutes,
     ...taskStatusRoutes,
     ...taskWorkflowRoutes,
     ...taskWorkflowStatusRoutes,
     ...taskWorkflowStatusPermissionRoutes,
     ...taskDateGraphRoutes,
+    ...taskDayGraphRoutes,
 
     ...expenseTypeRoutes,
+    ...expenseRoutes,
+    ...expenseDateGraphRoutes,
+    ...expenseDayGraphRoutes,
   ]
 })
 

@@ -1,29 +1,40 @@
 <template>
-  <v-dialog v-model="dialog"  persistent max-width="500px" scrollable>
+  <v-dialog v-model="dialog" persistent max-width="500px" scrollable>
     <template v-slot:activator="{ props: activatorProps }">
       <v-btn
-        v-tooltip:bottom="'Создать график по дате задачи'"
-        v-bind="{ ...activatorProps }"
-        variant="text"
-        icon
+          v-tooltip:bottom="title"
+          v-bind="{ ...activatorProps }"
+          variant="text"
+          icon
       >
         <v-icon>mdi-plus</v-icon>
       </v-btn>
     </template>
     <v-card>
-      <v-card-title class="text-h6">Создать график по дате задачи</v-card-title>
+      <v-card-title class="text-h6">{{ title }}</v-card-title>
+
       <v-card-text>
         <v-form ref="form" v-model="valid">
-          <v-text-field v-model="form.date" label="Дата" type="date" :rules="[required]" />
-          <v-text-field v-model="form.amount" label="Сумма" type="number" :rules="[required]" />
-          <v-text-field v-model="form.taskName" label="Задача (имя)" :rules="[required]" />
-          <v-checkbox v-model="form.isFact" label="Факт" />
-          <v-text-field v-model="form.owner" label="Владелец (фамилия)" :rules="[required]" />
+          <v-text-field v-model="taskDateGraph.date" label="Дата" type="date" :rules="[required]"/>
+          <v-text-field v-model.number="taskDateGraph.amount" label="Сумма" type="number" :rules="[required]"/>
+          <v-autocomplete
+              v-model="taskDateGraph.taskId"
+              label="Задача (имя)"
+              :rules="[required]"
+              :items="taskList"
+              @click:prepend="getTaskList()"
+              prepend-icon="mdi-reload"
+              item-value="id"
+              item-title="name"
+              :return-object="false"
+          />
+          <v-checkbox v-model="taskDateGraph.isFact" label="Факт"/>
         </v-form>
       </v-card-text>
+
       <v-card-actions>
-        <v-spacer />
-        <v-btn text @click="closeDialog">Отмена</v-btn>
+        <v-spacer/>
+        <v-btn variant="text" @click="closeDialog">Отмена</v-btn>
         <v-btn :disabled="!valid" color="primary" @click="createTaskDateGraph">Создать</v-btn>
       </v-card-actions>
     </v-card>
@@ -31,54 +42,58 @@
 </template>
 
 <script>
-import { postTaskDateGraph } from '@/modules/taskDateGraph/api'
+import * as taskDateGraphApi from '../../api'
+import { useCurrentUserStore } from '@/modules/auth'
+import { taskService } from '@/modules/task'
+import dayjs from 'dayjs'
 
 export default {
-  name: 'TaskDateGraphDialog',
-  data () {
-    return {
-      dialog: false,
-      valid: false,
-      form: {
-        date: '',
-        amount: '',
-        taskName: '',
-        isFact: false,
-        owner: ''
-      },
-      taskDateGraph: {
-        endpoint: 'taskDateGraph',
-        date: null,
-        amount: null,
-        taskId: null,
-        isFact: null,
-        ownerId: null
-      }
-    }
+  setup () {
+    const currentUserStore = useCurrentUserStore()
+    return { currentUserStore }
   },
+  name: 'TaskDateGraphCreateDialog',
+  props: [],
+  emits: ['taskDateGraphCreated'],
+  data: () => ({
+    title: 'Создать запись даты для графика задачи',
+    dialog: false,
+    valid: false,
+    taskDateGraph: {
+      date: '',
+      amount: '',
+      taskId: '',
+      isFact: false,
+    },
+    taskList: [],
+    required: v => !!v || 'Обязательное поле',
+  }),
   methods: {
-    required (v) {
-      return !!v || 'Обязательное поле'
+    async getTaskList () {
+      this.taskList = await taskService.getTaskList()
+    },
+    async createTaskDateGraph () {
+      if (!await this.$refs.form.validate()) {
+        return false
+      }
+      const ownerId = this.currentUserStore?.user?.id
+      if (!ownerId) return
+      const createdTaskDateGraph = await taskDateGraphApi.postTaskDateGraph({
+        ...this.taskDateGraph,
+        date: dayjs(this.taskDateGraph.date).toISOString(),
+        ownerId
+      })
+
+      if (createdTaskDateGraph.id) {
+        this.$emit('taskDateGraphCreated', createdTaskDateGraph)
+        this.closeDialog()
+
+      }
+
     },
     closeDialog () {
       this.dialog = false
-    },
-    async createTaskDateGraph () {
-      const payload = {
-        ...this.taskDateGraph,
-        ...this.form
-      }
-
-      try {
-        const created = await postTaskDateGraph(payload)
-        if (created && created.id) {
-          this.$emit('taskDateGraphCreated', created)
-          this.closeDialog()
-        }
-      } catch (e) {
-        console.error('Ошибка при создании графика по дате задачи:', e)
-      }
     }
   }
 }
-</script>
+</script> 

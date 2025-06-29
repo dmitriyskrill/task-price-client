@@ -1,9 +1,16 @@
-<script setup lang="ts">
+<script>
+
 import TaskDateGraphList from '../components/list/TaskDateGraphList.vue'
-</script> 
+
+export default {
+  components: { TaskDateGraphList }
+}
+</script>
 
 <template>
-  <taskDateGraphList/>
+  <TaskDateGraphList/>
 </template>
 
+<style scoped>
 
+</style> 
