@@ -6,7 +6,7 @@ import TaskDayGraphCreateDialog from '../createDialog/TaskDayGraphCreateDialog.v
 export default {
   components: { TaskDayGraphCreateDialog, TaskDayGraphPatchDialog },
   data: () => ({
-    title: 'Список типов задач',
+    title: 'Список записей дня из графика задач',
     editDialog: {
       isOpen: false,
       taskDayGraphId: null,
@@ -14,7 +14,10 @@ export default {
     taskDayGraphList: [],
     headers: [
       { title: 'Наименование', key: 'name' },
-      { title: 'Кратное наименование', key: 'shortName' },
+      { title: 'День', key: 'day' },
+      { title: 'Кол-во', key: 'amount' },
+      { title: 'Факт', key: 'isFact' },
+      { title: 'taskId', key: 'taskId' },
       { title: 'В корзине', key: 'isTrash' },
       { key: 'actions' }
     ],
@@ -57,7 +60,7 @@ export default {
       no-gutters
       class="px-4"
   >
-    <h3 class="mx-10">{{title}}</h3>
+    <h3 class="mx-10">{{ title }}</h3>
     <v-spacer/>
     <TaskDayGraphCreateDialog
         @taskDayGraphCreated="setToTaskDayGraphList($event)"

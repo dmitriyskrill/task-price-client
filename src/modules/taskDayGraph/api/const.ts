@@ -1,3 +1,3 @@
-const taskTypeApiEndpoint = 'task-type'
+const taskDayGraphApiEndpoint = 'task-day-graph'
 
-export { taskTypeApiEndpoint }
+export { taskDayGraphApiEndpoint }

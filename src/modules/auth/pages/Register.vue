@@ -53,6 +53,8 @@ import VueRecaptcha from 'vue3-recaptcha2'
 import { RECAPTCHA_SITE_KEY } from '@/shared/constants'
 import * as authApi from '@/modules/auth/api'
 import { useRouter } from 'vue-router'
+const VITE_BASE_LOGIN = import.meta.env.VITE_BASE_LOGIN
+const VITE_BASE_PASSWORD = import.meta.env.VITE_BASE_PASSWORD
 
 export default {
   computed: {
@@ -64,9 +66,9 @@ export default {
   setup() {
     const router = useRouter()
 
-    const email = ref('');
-    const password = ref('');
-    const confirmPassword = ref('');
+    const email = ref(VITE_BASE_LOGIN);
+    const password = ref(VITE_BASE_PASSWORD);
+    const confirmPassword = ref(VITE_BASE_PASSWORD);
     const recaptchaToken = ref('');
     const form = ref(null);
     const loading = ref(false);

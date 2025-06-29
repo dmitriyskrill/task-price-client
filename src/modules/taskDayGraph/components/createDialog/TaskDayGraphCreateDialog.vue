@@ -15,18 +15,20 @@
 
       <v-card-text>
         <v-form ref="form" v-model="valid">
-          <v-text-field
-              v-model="taskDayGraph.shortName"
-              label="Краткое наименование"
-              :rules="[]"
-              clearable
+          <v-text-field v-model.number="taskDayGraph.day" label="День" type="number" :rules="[required]"/>
+          <v-text-field v-model.number="taskDayGraph.amount" label="Сумма" type="number" :rules="[required]"/>
+          <v-autocomplete
+              v-model="taskDayGraph.taskId"
+              label="Задача (имя)"
+              :rules="[required]"
+              :items="taskList"
+              @click:prepend="getTaskList()"
+              prepend-icon="mdi-reload"
+              item-value="id"
+              item-title="name"
+              :return-object="false"
           />
-          <v-text-field
-              v-model="taskDayGraph.name"
-              label="Наименование"
-              :rules="[]"
-              clearable
-          />
+          <v-checkbox v-model="taskDayGraph.isFact" label="Факт"/>
         </v-form>
       </v-card-text>
 
@@ -42,6 +44,7 @@
 <script>
 import * as taskDayGraphApi from '../../api'
 import { useCurrentUserStore } from '@/modules/auth'
+import { taskService } from '@/modules/task'
 
 export default {
   setup () {
@@ -52,17 +55,22 @@ export default {
   props: [],
   emits: ['taskDayGraphCreated'],
   data: () => ({
-    title: 'Создать тип задачи',
+    title: 'Создать запись дня для графика задачи',
     dialog: false,
     valid: false,
     taskDayGraph: {
-      shortName: '',
-      name: '',
+      day: '',
+      amount: '',
+      taskId: '',
+      isFact: false,
     },
+    taskList: [],
     required: v => !!v || 'Обязательное поле',
-    emailRule: v => /.+@.+\..+/.test(v) || 'Некорректный email'
   }),
   methods: {
+    async getTaskList () {
+      this.taskList = await taskService.getTaskList()
+    },
     async createTaskDayGraph () {
       if (!await this.$refs.form.validate()) {
         return false

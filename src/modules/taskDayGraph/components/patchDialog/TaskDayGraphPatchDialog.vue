@@ -1,7 +1,7 @@
 <template>
   <v-dialog :model-value="isOpen" persistent max-width="500px" scrollable>
     <v-card>
-      <v-card-title class="text-h6">Редактировать тип задачи</v-card-title>
+      <v-card-title class="text-h6">{{ title }}</v-card-title>
 
       <v-card-text>
         <v-form ref="form" v-model="valid">
@@ -56,84 +56,30 @@ export default {
   props: ['taskDayGraphId', 'isOpen'],
   emits: ['closeDialog', 'taskDayGraphPatched'],
   data: () => ({
+    title: 'Редактировать запись дня из графика задачи',
     valid: false,
     taskDayGraph: {},
     numberFields: [
       {
-        key: 'defaultDayAdditionalFactor',
-        text: 'Множитель для графиков по умолчанию'
+        key: 'amount',
+        text: 'Кол-во'
       },
       {
-        key: 'defaultDateAdditionalFactor',
-        text: 'Множитель для графиков ДАТ по умолчанию'
-      },
-      {
-        key: 'defaultProfitPercent',
-        text: '% прибыли по умолчанию'
-      },
-      {
-        key: 'defaultGeneralBusinessExpensesPercent',
-        text: '% общехозяйственные по умолчанию'
-      },
-      {
-        key: 'defaultUnforeseenExpensesPercent',
-        text: '% непредвиденные по умолчанию'
-      },
-      {
-        key: 'defaultVatPercent',
-        text: '% НДС по умолчанию'
-      },
-      {
-        key: 'fontSize',
-        text: 'Величина шрифта в ЛЗК'
-      },
-      {
-        key: 'fontWeight',
-        text: 'Масса шрифта в ЛЗК'
+        key: 'day',
+        text: 'День'
       },
     ],
     textFields: [
-      { key: 'name', text: 'Наименование' },
-      { key: 'shortName', text: 'Краткое наименование' }
     ],
     checkboxes: [
       {
-        text: 'Можно связывать с объектами',
-        key: 'isCanConnectToObject'
+        text: 'Факт',
+        key: 'isFact'
       },
       {
-        text: 'Показывать кнопку скрытия/показа детей в дереве задач',
-        key: 'taskTreeIsShowChildBtn'
+        text: 'В корзине',
+        key: 'isTrash'
       },
-      {
-        text: 'Показывать кнопку добавления в дереве задач',
-        key: 'taskTreeIsShowAddBtn'
-      },
-      {
-        text: 'Открывается в виде отдельной ЛЗК',
-        key: 'isOpenLikeMain'
-      },
-      {
-        text: 'Может содержать затраты',
-        key: 'isCanContainExpense'
-      },
-      {
-        text: 'Показывать сводную информацию по графикам',
-        key: 'isShowGraphInfo'
-      },
-      {
-        text: 'Задача верхнего уровня',
-        key: 'isTopLevel'
-      },
-      // {
-      //   text: 'Ответственный обязателен',
-      //   key: 'isResponsibleRequired'
-      // },
-      // {
-      //   text: 'Статус, указанный по умолчанию в типе задачи, является приоритетным',
-      //   key: 'isPriorityDefaultElementStatus'
-      // },
-
     ],
     originalTaskDayGraph: {},
     changedFields: {},

@@ -43,6 +43,12 @@ export default defineComponent({
           },
           {
             icon: 'mdi-list-status',
+            title: 'Задачи',
+            value: 'task',
+            to: '/task/list',
+          },
+          {
+            icon: 'mdi-list-status',
             title: 'Типы задач',
             value: 'taskType',
             to: '/taskType/list',
@@ -84,10 +90,34 @@ export default defineComponent({
             to: '/taskDateGraph/list',
           },
           {
+            icon: 'mdi-chart-line',
+            title: 'TaskDayGraph',
+            value: 'taskDayGraph',
+            to: '/taskDayGraph/list',
+          },
+          {
+            icon: 'mdi-list-status',
+            title: 'Затраты',
+            value: 'expense',
+            to: '/expense/list',
+          },
+          {
             icon: 'mdi-list-status',
             title: 'Тип затрат',
             value: 'expenseType',
             to: '/expenseType/list',
+          },
+          {
+            icon: 'mdi-chart-line',
+            title: 'ExpenseDateGraph',
+            value: 'expenseDateGraph',
+            to: '/expenseDateGraph/list',
+          },
+          {
+            icon: 'mdi-chart-line',
+            title: 'ExpenseDayGraph',
+            value: 'expenseDayGraph',
+            to: '/expenseDayGraph/list',
           },
         ]
       },

@@ -1,5 +1,5 @@
-import * as expenseService from '../api'
+import * as expenseTypeService from '../api'
 
 export {
-  expenseService
+  expenseTypeService
 } 

@@ -1,11 +1,11 @@
-import { getTaskTypeList } from './getList/getTaskTypeList'
-import { getTaskTypeById } from './getById/getTaskTypeById'
-import { patchTaskTypeById } from './patchById/patchTaskTypeById'
-import { postTaskType } from './post/postTaskType'
+import { getTaskDayGraphList } from './getList/getTaskDayGraphList'
+import { getTaskDayGraphById } from './getById/getTaskDayGraphById'
+import { patchTaskDayGraphById } from './patchById/patchTaskDayGraphById'
+import { postTaskDayGraph } from './post/postTaskDayGraph'
 
 export {
-  getTaskTypeList,
-  getTaskTypeById,
-  patchTaskTypeById,
-  postTaskType
+  getTaskDayGraphList,
+  getTaskDayGraphById,
+  patchTaskDayGraphById,
+  postTaskDayGraph
 }

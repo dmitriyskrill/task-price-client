@@ -1,8 +1,8 @@
-import { taskTypeService } from './service'
-import taskTypeRoutes from './router'
+import { taskDayGraphService } from './service'
+import taskDayGraphRoutes from './router'
 
 export {
-  taskTypeRoutes,
-  taskTypeService
+  taskDayGraphRoutes,
+  taskDayGraphService
 }
 

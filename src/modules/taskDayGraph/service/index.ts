@@ -1,5 +1,5 @@
-import * as taskTypeService from '../api'
+import * as taskDayGraphService from '../api'
 
 export {
-  taskTypeService
+  taskDayGraphService
 }
